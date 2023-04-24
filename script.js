@@ -59,4 +59,5 @@ function countdown() {
 function stopCountdown() {
 
     clearTimeout(countdownTimeOut)
+    pomodoro.style.backgroundColor = "orange"
 }
