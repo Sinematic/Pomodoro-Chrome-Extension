@@ -3,20 +3,18 @@ const pauseBtn = document.getElementById("pause")
 const stopBtn = document.getElementById("stop")
 const timer = document.getElementById("timer")
 
+const pomodoro = document.querySelector(".pomodoro")
 let countdownTimeOut
 
 playBtn.addEventListener("click", (event) => {
     event.preventDefault()
     countdown()
-    playBtn.style.display = "none"
-    pauseBtn.style.display = "block"
+    updateInterface("#8BC34A")
 })
 
 pauseBtn.addEventListener("click", (event) => {
     event.preventDefault()
-    stopCountdown()
-    playBtn.style.display = "block"
-    pauseBtn.style.display = "none"
+    pauseCountdown()
 })
 
 stopBtn.addEventListener("click", (event) => {
@@ -31,11 +29,6 @@ function getTotalSecs() {
     return totalSecs
 }
 
-function ring() {
-    const pomodoro = document.querySelector(".pomodoro")
-    pomodoro.style.backgroundColor = "red"
-}
-
 function formatTimer(totalSecs) {
 
     let minutes = Math.floor(totalSecs / 60)
@@ -46,6 +39,9 @@ function formatTimer(totalSecs) {
 function countdown() {
 
     let timeLeft = getTotalSecs()
+    
+    playBtn.style.display = "none"
+    pauseBtn.style.display = "block"
   
     if (timeLeft > 0) {
         
@@ -54,10 +50,38 @@ function countdown() {
         countdownTimeOut = setTimeout(countdown, 1000)
 
     } else ring()
+
+}
+
+function pauseCountdown() {
+
+    clearTimeout(countdownTimeOut)
+    playBtn.style.display = "block"
+    pauseBtn.style.display = "none"
+    updateInterface("blue")
 }
 
 function stopCountdown() {
 
     clearTimeout(countdownTimeOut)
-    pomodoro.style.backgroundColor = "orange"
+    timer.innerText = "25:00"
+    playBtn.style.display = "block"
+    pauseBtn.style.display = "none"
+    updateInterface("orange")
+}
+
+function ring() {
+    updateInterface("red")
+    playBtn.style.display = "block"
+    pauseBtn.style.display = "none"
+}
+
+function updateInterface(color="green") {
+    
+    pomodoro.style.backgroundColor = color
+    pomodoro.style.borderColor = color
+    playBtn.style.borderColor = color
+    pauseBtn.style.borderColor = color
+    stopBtn.style.borderColor = color
+    timer.style.borderColor = color
 }
