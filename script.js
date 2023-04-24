@@ -24,14 +24,12 @@ stopBtn.addEventListener("click", (event) => {
     stopCountdown()
 })
 
-
 function getTotalSecs() {
 
     let [min, sec] = timer.innerText.split(":")
     let totalSecs = parseInt(min) * 60 + parseInt(sec)
     return totalSecs
 }
-
 
 function ring() {
     const pomodoro = document.querySelector(".pomodoro")
@@ -50,10 +48,12 @@ function countdown() {
     let timeLeft = getTotalSecs()
   
     if (timeLeft > 0) {
+        
         timeLeft--;
         formatTimer(timeLeft)
         countdownTimeOut = setTimeout(countdown, 1000)
-    }
+
+    } else ring()
 }
 
 function stopCountdown() {
