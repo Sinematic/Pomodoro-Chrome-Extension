@@ -70,3 +70,20 @@ body {
 #stop:hover {
     background-color: rgb(255, 236, 199);
 }
+
+.pomodoro-list {
+    background-color: #333333;
+    margin: 20px auto 0 auto;
+    font-family: 'Open Sans', sans-serif;
+    color: #F5F5F5;
+    font-size: 12px;
+    width: 100%;
+    width: 240px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto, 1fr);
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: solid 3px #F5F5F5;    
+}

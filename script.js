@@ -2,6 +2,7 @@ const playBtn = document.getElementById("play")
 const pauseBtn = document.getElementById("pause")
 const stopBtn = document.getElementById("stop")
 const timer = document.getElementById("timer")
+const list = document.querySelector(".pomodoro-list")
 
 const pomodoro = document.querySelector(".pomodoro")
 let countdownTimeOut
@@ -86,3 +87,11 @@ function updateInterface(color="green") {
     stopBtn.style.borderColor = color
     timer.style.borderColor = color
 }
+
+const ol = document.createElement("ol")
+list.appendChild(ol)
+
+const pomodoroElement = document.createElement("li")
+pomodoroElement.setAttribute("id", "current-pomodoro")
+pomodoroElement.innerText = ` Current Pomodoro : ${timer.innerText}`
+ol.appendChild(pomodoroElement)
