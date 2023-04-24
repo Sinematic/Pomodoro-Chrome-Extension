@@ -55,3 +55,7 @@ body {
     border: solid 2px rgba(0, 128, 0, 0.712);
     border-radius: 10px;
 }
+
+#pause {
+    display: none;
+}

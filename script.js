@@ -1,44 +1,62 @@
-const start = document.getElementById("start")
-const stop = document.getElementById("stop")
+const playBtn = document.getElementById("play")
+const pauseBtn = document.getElementById("pause")
+const stopBtn = document.getElementById("stop")
+const timer = document.getElementById("timer")
 
-start.addEventListener("click", function(event) {
+let countdownTimeOut
+
+playBtn.addEventListener("click", (event) => {
     event.preventDefault()
-    countDown()
+    countdown()
+    playBtn.style.display = "none"
+    pauseBtn.style.display = "block"
 })
 
-stop.addEventListener("click", function(event) {
+pauseBtn.addEventListener("click", (event) => {
     event.preventDefault()
+    stopCountdown()
+    playBtn.style.display = "block"
+    pauseBtn.style.display = "none"
 })
 
-function getTotalSecs(timer) {
+stopBtn.addEventListener("click", (event) => {
+    event.preventDefault()
+    stopCountdown()
+})
 
-    let [min, sec] = timer.split(":")
+
+function getTotalSecs() {
+
+    let [min, sec] = timer.innerText.split(":")
     let totalSecs = parseInt(min) * 60 + parseInt(sec)
     return totalSecs
 }
 
-function countDown() {
-    const timer = document.getElementById("timer").innerText
-    console.log(timer)
-    let [min, sec] = timer.split(":")
-    console.log(min)
-    console.log(sec)
-
-    setTimeout((min, sec) => {
-        
-        if (min === 0 && sec === 0) {
-            const pomodoro = document.querySelector(".pomodoro")
-            pomodoro.style.backgroundColor = "red"
-            console.log("tto")
-        }
-
-    }, 1000)
-}
-
-getTotalSecs("25:00")
 
 function ring() {
-
     const pomodoro = document.querySelector(".pomodoro")
     pomodoro.style.backgroundColor = "red"
+}
+
+function formatTimer(totalSecs) {
+
+    let minutes = Math.floor(totalSecs / 60)
+    let seconds = totalSecs % 60
+    timer.innerText =  `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+}
+
+function countdown() {
+
+    let timeLeft = getTotalSecs()
+  
+    if (timeLeft > 0) {
+        timeLeft--;
+        formatTimer(timeLeft)
+        countdownTimeOut = setTimeout(countdown, 1000)
+    }
+}
+
+function stopCountdown() {
+
+    clearTimeout(countdownTimeOut)
 }
