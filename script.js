@@ -74,6 +74,7 @@ function ring() {
     updateInterface("red")
     playBtn.style.display = "block"
     pauseBtn.style.display = "none"
+    timer.innerText = "25:00"
 }
 
 function updateInterface(color="green") {
