@@ -8,7 +8,7 @@ let countdownTimeOut
 
 const list = document.querySelector(".pomodoro-list")
 const ol = document.querySelector("ol")
-const addPomodoroBtn = document.querySelector(".fa-plus")
+const addPomodoroBtn = document.querySelector("#plus")
 const settingsBtn = document.querySelector(".fa-gear")
 const settingsModal = document.getElementById("modal")
 const closeModal = document.querySelector(".fa-xmark")

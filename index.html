@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/56f1d6909e.js" crossorigin="anonymous"></script>
+    <script defer src="fontawesome/all.js"></script>
     <title>Pomodoro</title>
 </head>
 <body>
@@ -22,22 +22,21 @@
             <h1 id="timer">00:10</h1>
                 
             <form>
-                <button id="play"><i class="fa-solid fa-play"></i></button>
-                <button id="pause"><i class="fa-solid fa-pause"></i></button>
-                <button id="stop"><i class="fa-solid fa-stop"></i></button>
+                <button id="play"><i class="fas fa-play"></i></button>
+                <button id="pause"><i class="fas fa-pause"></i></button>
+                <button id="stop"><i class="fas fa-stop"></i></button>
             </form>
 
         </article>
 
         <article class="pomodoro-list">
             <span id="pomo-span">Pomodoro List :</span>
-            <i class="fa-solid fa-plus"></i>
-            <i class="fa-solid fa-gear"></i>
+            <i id="plus" class="fas fa-plus"></i>
             <ol></ol>
 
             <aside id="modal">
 
-                <i class="fa-solid fa-xmark"></i>
+                <i class="fas fa-xmark"></i>
             
                 <p>Pomodoro Settings :</p>
 
