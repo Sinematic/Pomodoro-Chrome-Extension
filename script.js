@@ -16,7 +16,6 @@ const submitBtn = document.getElementById("submit-btn")
 
 let pomodoroDefaultTime = "25:00"
 
-
 const pomodoroElement = document.createElement("li")
 pomodoroElement.setAttribute("id", "current-pomodoro")
 pomodoroElement.classList.add("pomodoro-list-item")
