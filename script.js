@@ -1,11 +1,23 @@
 const playBtn = document.getElementById("play")
 const pauseBtn = document.getElementById("pause")
 const stopBtn = document.getElementById("stop")
-const timer = document.getElementById("timer")
-const list = document.querySelector(".pomodoro-list")
 
 const pomodoro = document.querySelector(".pomodoro")
+const timer = document.getElementById("timer")
 let countdownTimeOut
+
+const list = document.querySelector(".pomodoro-list")
+const ol = document.querySelector("ol")
+const addPomodoroBtn = document.querySelector(".fa-plus")
+const settingsBtn = document.querySelector(".fa-gear")
+
+let pomodoroDefaultTime = "25:00"
+
+
+const pomodoroElement = document.createElement("li")
+pomodoroElement.setAttribute("id", "current-pomodoro")
+pomodoroElement.innerText = timer.innerText
+ol.appendChild(pomodoroElement)
 
 playBtn.addEventListener("click", (event) => {
     event.preventDefault()
@@ -21,6 +33,14 @@ pauseBtn.addEventListener("click", (event) => {
 stopBtn.addEventListener("click", (event) => {
     event.preventDefault()
     stopCountdown()
+})
+
+addPomodoroBtn.addEventListener("click", () => {
+
+    const newPomodoro = document.createElement("li")
+    newPomodoro.classList.add("pomodoro-list-item")
+    newPomodoro.innerText = pomodoroDefaultTime
+    ol.appendChild(newPomodoro)
 })
 
 function getTotalSecs() {
@@ -87,11 +107,3 @@ function updateInterface(color="green") {
     stopBtn.style.borderColor = color
     timer.style.borderColor = color
 }
-
-const ol = document.createElement("ol")
-list.appendChild(ol)
-
-const pomodoroElement = document.createElement("li")
-pomodoroElement.setAttribute("id", "current-pomodoro")
-pomodoroElement.innerText = ` Current Pomodoro : ${timer.innerText}`
-ol.appendChild(pomodoroElement)

@@ -86,4 +86,58 @@ body {
     box-sizing: border-box;
     border-radius: 10px;
     border: solid 3px #F5F5F5;    
+    position: relative;
+}
+
+#current-pomodoro::before {
+    content: "Current Pomodoro : ";
+    font-weight: 400;
+}
+
+#current-pomodoro {
+    font-weight: 700;
+    border: 1px dotted orange;
+    border-left: 3px solid orange;
+    border-radius: 5px;
+    padding: 6px 8px;
+    margin-top: 12px;
+    width: fit-content;
+}
+
+
+.fa-plus, .fa-gear {
+    position: absolute;
+    top: 8px; 
+    padding: 3px;
+    border: 1px solid #F5F5F5;
+    border-radius: 6px;
+    font-size: 10px;
+}
+
+#pomo-span {
+    position: absolute;
+    top: 12px;
+    left: 20px;
+}
+
+.fa-plus {
+    right: 32px;
+}
+
+.fa-gear {
+    right: 8px;
+}
+
+.pomodoro-list-item::before {
+    content: "Pomodoro Element : ";
+}
+
+
+.pomodoro-list-item {
+    border-bottom: 1px solid #F5F5F5;
+    border-left: 2px solid #F5F5F5;
+    padding: 3px 4px 6px 4px;
+    margin-top: 12px;
+    border-radius: 1px 0px 3px 3px;
+    width: fit-content;
 }
