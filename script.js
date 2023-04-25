@@ -10,12 +10,16 @@ const list = document.querySelector(".pomodoro-list")
 const ol = document.querySelector("ol")
 const addPomodoroBtn = document.querySelector(".fa-plus")
 const settingsBtn = document.querySelector(".fa-gear")
+const settingsModal = document.getElementById("modal")
+const closeModal = document.querySelector(".fa-xmark")
+const submitBtn = document.getElementById("submit-btn")
 
 let pomodoroDefaultTime = "25:00"
 
 
 const pomodoroElement = document.createElement("li")
 pomodoroElement.setAttribute("id", "current-pomodoro")
+pomodoroElement.classList.add("pomodoro-list-item")
 pomodoroElement.innerText = timer.innerText
 ol.appendChild(pomodoroElement)
 
@@ -35,12 +39,21 @@ stopBtn.addEventListener("click", (event) => {
     stopCountdown()
 })
 
-addPomodoroBtn.addEventListener("click", () => {
+addPomodoroBtn.addEventListener("click", () => addPomodoro())
 
-    const newPomodoro = document.createElement("li")
-    newPomodoro.classList.add("pomodoro-list-item")
-    newPomodoro.innerText = pomodoroDefaultTime
-    ol.appendChild(newPomodoro)
+settingsBtn.addEventListener("click", () => settingsModal.style.display = "block")
+
+closeModal.addEventListener("click", () => settingsModal.style.display = "none")
+
+submitBtn.addEventListener("click", (event) => {
+
+    event.preventDefault()
+    const minutes = document.getElementById("minutes").value
+
+    if (minutes > 0 && minutes <= 60) {
+        addPomodoro(minutes + ":00")
+    } else errorMessage()
+
 })
 
 function getTotalSecs() {
@@ -106,4 +119,29 @@ function updateInterface(color="green") {
     pauseBtn.style.borderColor = color
     stopBtn.style.borderColor = color
     timer.style.borderColor = color
+}
+
+function addPomodoro(time=pomodoroDefaultTime) {
+
+    const newPomodoro = document.createElement("li")
+    newPomodoro.classList.add("pomodoro-list-item")
+    newPomodoro.innerText = time
+    ol.appendChild(newPomodoro)
+}
+
+function errorMessage() {
+
+    const message = document.querySelector(".error-message")
+
+    if (message) {
+        message.remove()
+
+    } else {
+        const message = document.createElement("div")
+        message.classList.add("error-message")
+        message.innerText = "Length must be between 1 and 60 minutes !"
+        settingsModal.appendChild(message)
+
+        setTimeout(() => message.remove(), 3000)
+    }
 }

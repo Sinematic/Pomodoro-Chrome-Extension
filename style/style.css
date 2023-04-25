@@ -7,11 +7,15 @@ body {
     padding-top: 50px;
 }
 
+#container > * {
+    
+    box-sizing: border-box;
+}
+
 .pomodoro {
     margin: auto;
     font-family: 'Open Sans', sans-serif;
     color: #333333;
-    width: 100%;
     width: 240px;
     display: grid;
     grid-template-columns: 1fr;
@@ -84,12 +88,11 @@ body {
     grid-template-rows: repeat(auto, 1fr);
     padding: 20px;
     box-sizing: border-box;
-    border-radius: 10px;
-    border: solid 3px #F5F5F5;    
+    border-radius: 10px;   
     position: relative;
 }
 
-#current-pomodoro::before {
+#current-pomodoro:before {
     content: "Current Pomodoro : ";
     font-weight: 400;
 }
@@ -101,7 +104,6 @@ body {
     border-radius: 5px;
     padding: 6px 8px;
     margin-top: 12px;
-    width: fit-content;
 }
 
 
@@ -128,16 +130,91 @@ body {
     right: 8px;
 }
 
-.pomodoro-list-item::before {
-    content: "Pomodoro Element : ";
-}
-
-
 .pomodoro-list-item {
+    font-weight: 400;
+    font-size: 12px;
     border-bottom: 1px solid #F5F5F5;
     border-left: 2px solid #F5F5F5;
     padding: 3px 4px 6px 4px;
     margin-top: 12px;
     border-radius: 1px 0px 3px 3px;
     width: fit-content;
+}
+
+.pomodoro-list-item:before {
+    content: "Pomodoro Element : ";
+}
+
+#modal {
+    width: 240px;
+    box-sizing: border-box;
+    position: absolute;
+    display: none;
+    padding: 12px 20px;
+    background-color: rgb(79, 79, 79);
+    font-size: 10px;
+    border-radius: 5px;
+}
+
+#modal p {
+    text-align: center;
+}
+
+#modal form {
+    padding-top: 15px;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 120px;
+}
+
+#modal input {
+    padding: 4px 7px;
+    border-radius: 5px;
+    font-size: 10px;
+    box-sizing: border-box;
+    border: none;
+}
+
+.pomodoro-list label {
+    padding: 5px 5px 5px 0px;
+    font-size: 8px;
+    color: #a7a7a7;
+    font-weight: 400;
+    font-style: italic;
+    border-bottom: 1px solid #F5F5F5;
+    margin-bottom: 10px;
+}
+
+.fa-xmark {
+    color: #F5F5F5;
+    position: absolute;
+    right: 7px;
+    top: 5px;
+    padding: 1px 2px;
+    text-align: center;
+    border: 1px solid #F5F5F5;
+    border-radius: 3px;
+}
+
+#submit-btn {
+    border: 1px solid #F5F5F5;
+    background-color: #333333;
+    color: #F5F5F5;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.error-message {
+    background-color: orange;
+    border: 2px solid darkorange;
+    box-sizing: border-box;
+    border-radius: 8px;
+    color: #F5F5F5;
+    padding: 8px 12px;
+    width: 200px;
+    position: absolute;
+    text-align: center;
+    top: 80px;
+    left: 20px;
+    font-size: 8px;
 }
