@@ -104,10 +104,10 @@ body {
     border-radius: 5px;
     padding: 6px 8px;
     margin-top: 12px;
+    margin-left: 0;
 }
 
-
-.fa-plus, .fa-gear {
+#plus, #settings {
     position: absolute;
     top: 8px; 
     padding: 3px;
@@ -122,11 +122,11 @@ body {
     left: 20px;
 }
 
-.fa-plus {
+#plus {
     right: 32px;
 }
 
-.fa-gear {
+#settings {
     right: 8px;
 }
 
@@ -135,10 +135,10 @@ body {
     font-size: 12px;
     border-bottom: 1px solid #F5F5F5;
     border-left: 2px solid #F5F5F5;
-    padding: 3px 4px 6px 4px;
+    padding: 6px 4px 6px 4px;
     margin-top: 12px;
     border-radius: 1px 0px 3px 3px;
-    width: fit-content;
+    width: 180px;
     margin-left: 6px;
 }
 
@@ -186,7 +186,7 @@ body {
     margin-bottom: 10px;
 }
 
-.fa-xmark {
+.fa-xmark, #close {
     color: #F5F5F5;
     position: absolute;
     right: 7px;
@@ -212,10 +212,24 @@ body {
     border-radius: 8px;
     color: #F5F5F5;
     padding: 8px 12px;
-    width: 200px;
+    width: 180px;
     position: absolute;
     text-align: center;
     top: 82px;
     left: 20px;
     font-size: 8px;
+}
+
+#close {
+    font-weight: 700;
+}
+
+.list-pomodoro-div {
+    position: relative;
+}
+
+.fa-trash {
+    position: absolute;
+    right: 25px;
+    top: 6px;
 }

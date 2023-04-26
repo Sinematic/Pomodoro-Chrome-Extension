@@ -9,18 +9,15 @@ let countdownTimeOut
 const list = document.querySelector(".pomodoro-list")
 const ol = document.querySelector("ol")
 const addPomodoroBtn = document.querySelector("#plus")
-const settingsBtn = document.querySelector(".fa-gear")
+const settingsBtn = document.getElementById("settings")
 const settingsModal = document.getElementById("modal")
-const closeModal = document.querySelector(".fa-xmark")
+const closeModal = document.getElementById("close")
 const submitBtn = document.getElementById("submit-btn")
 
 let pomodoroDefaultTime = "25:00"
 
-const pomodoroElement = document.createElement("li")
-pomodoroElement.setAttribute("id", "current-pomodoro")
-pomodoroElement.classList.add("pomodoro-list-item")
-pomodoroElement.innerText = timer.innerText
-ol.appendChild(pomodoroElement)
+addPomodoro(true)
+
 
 playBtn.addEventListener("click", (event) => {
     event.preventDefault()
@@ -120,12 +117,38 @@ function updateInterface(color="green") {
     timer.style.borderColor = color
 }
 
-function addPomodoro(time=pomodoroDefaultTime) {
+function addPomodoro(isCurrent=false, time=pomodoroDefaultTime) {
 
+    const newPomodoroDiv = document.createElement("div")
     const newPomodoro = document.createElement("li")
     newPomodoro.classList.add("pomodoro-list-item")
     newPomodoro.innerText = time
-    ol.appendChild(newPomodoro)
+    ol.appendChild(newPomodoroDiv)
+    newPomodoroDiv.classList.add("list-pomodoro-div")
+    newPomodoroDiv.appendChild(newPomodoro)
+
+    const trash = document.createElement("i")
+    trash.classList.add("fas", "fa-trash")
+    newPomodoroDiv.appendChild(trash)
+
+    trash.addEventListener("click", () => {
+        console.log("toto")
+        newPomodoroDiv.remove()
+        newPomodoro.remove()
+        trash.remove()
+    })
+
+    trash.addEventListener("click", (event) => {
+        event.preventDefault()
+        console.log("toto")
+        newPomodoroDiv.remove()
+        newPomodoro.remove()
+        trash.remove()
+    })
+
+    if(isCurrent) {
+        newPomodoro.setAttribute("id", "current-pomodoro")
+    }
 }
 
 function errorMessage() {
@@ -144,3 +167,13 @@ function errorMessage() {
         setTimeout(() => message.remove(), 3000)
     }
 }
+/*
+const listItems = document.querySelectorAll(".pomodoro-list-item")
+
+for (let i = 0; i < listItems.length; i++)
+{
+    const listItem = listItems[i]
+    const trash = document.createElement("i")
+    trash.classList.add("fas", "fa-trash")
+    listItem.appendChild(trash)
+}*/
