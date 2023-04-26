@@ -1,6 +1,7 @@
 body {
    width: 260px;
    box-sizing: border-box;
+   max-height: 500px;
 }
 
 #container {
@@ -8,7 +9,7 @@ body {
     padding-top: 12px;
     padding-bottom: 12px;
     margin: auto;
-    background-color: #F5F5F5;
+    background-color: #FDF5E6;
 }
 
 .pomodoro {
@@ -77,7 +78,7 @@ body {
 .pomodoro-list {
     background-color: #333333;
     margin: 10px auto 0 auto;
-    height: 200px;
+    max-height: 290px;
     font-family: 'Open Sans', sans-serif;
     color: #F5F5F5;
     font-size: 12px;
@@ -129,6 +130,7 @@ body {
 
 #settings {
     right: 8px;
+    margin-bottom: 12px;
 }
 
 .pomodoro-list-item {
@@ -145,6 +147,7 @@ body {
 
 .pomodoro-list-item:before {
     content: "Pomodoro Element : ";
+    padding-right: 10px;
 }
 
 #modal {
@@ -179,7 +182,7 @@ body {
 
 .pomodoro-list label {
     padding: 5px 5px 5px 0px;
-    font-size: 8px;
+    font-size: 12px;
     color: #a7a7a7;
     font-weight: 400;
     font-style: italic;
@@ -217,8 +220,15 @@ body {
     position: absolute;
     text-align: center;
     top: 82px;
-    left: 20px;
+    left: 30px;
     font-size: 8px;
+}
+
+.pomodoro-list > .error-message {
+    font-size: 12px;
+    top: 30px;
+    left: 15px;
+    width: 210px;
 }
 
 #close {
@@ -230,8 +240,10 @@ body {
     width: 210px;
 }
 
-.fa-trash {
+span:has(.fa-trash) {
     position: absolute;
-    right: 25px;
-    top: 6px;
+    right: 19px;
+    top: 4px;
+    background-color: darkorange;
+    padding: 2px 3px;
 }

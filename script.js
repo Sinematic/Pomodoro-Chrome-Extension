@@ -5,6 +5,7 @@ const stopBtn = document.getElementById("stop")
 const pomodoro = document.querySelector(".pomodoro")
 const timer = document.getElementById("timer")
 let countdownTimeOut
+let pomodoroCounter = 0
 
 const list = document.querySelector(".pomodoro-list")
 const ol = document.querySelector("ol")
@@ -15,8 +16,9 @@ const closeModal = document.getElementById("close")
 const submitBtn = document.getElementById("submit-btn")
 
 let pomodoroDefaultTime = "25:00"
+let breakDefaultTime = "5:00"
 
-addPomodoro(true)
+addPomodoro()
 
 
 playBtn.addEventListener("click", (event) => {
@@ -47,8 +49,11 @@ submitBtn.addEventListener("click", (event) => {
     const minutes = document.getElementById("minutes").value
 
     if (minutes > 0 && minutes <= 60) {
+
         addPomodoro(minutes + ":00")
-    } else errorMessage()
+        settingsModal.style.display = "none"
+
+    } else errorMessage("Length must be between 1 and 60 minutes !", settingsModal)
 
 })
 
@@ -117,55 +122,74 @@ function updateInterface(color="green") {
     timer.style.borderColor = color
 }
 
-function addPomodoro(isCurrent=false, time=pomodoroDefaultTime) {
+function addPomodoro(time=pomodoroDefaultTime) {
 
-    const newPomodoroDiv = document.createElement("div")
-    const newPomodoro = document.createElement("li")
-    newPomodoro.classList.add("pomodoro-list-item")
-    newPomodoro.innerText = time
-    ol.appendChild(newPomodoroDiv)
-    newPomodoroDiv.classList.add("list-pomodoro-div")
-    newPomodoroDiv.appendChild(newPomodoro)
+    const testPomodoro = document.getElementById("current-pomodoro")
+    console.log(testPomodoro)
 
-    const trash = document.createElement("i")
-    trash.classList.add("fas", "fa-trash")
-    newPomodoroDiv.appendChild(trash)
+    if (pomodoroCounter < 8) {
 
-    trash.addEventListener("click", () => {
-        console.log("toto")
-        newPomodoroDiv.remove()
-        newPomodoro.remove()
-        trash.remove()
-    })
+        pomodoroCounter += 1
 
-    if(isCurrent) {
-        newPomodoro.setAttribute("id", "current-pomodoro")
+        const newPomodoroDiv = document.createElement("div")
+        const newPomodoro = document.createElement("li")
+        newPomodoro.classList.add("pomodoro-list-item")
+        newPomodoro.innerText = time
+        ol.appendChild(newPomodoroDiv)
+        newPomodoroDiv.classList.add("list-pomodoro-div")
+        newPomodoroDiv.appendChild(newPomodoro)
+    
+        const trash = document.createElement("i")
+        const trashSpan = document.createElement("span")
+        trash.classList.add("fas", "fa-trash")
+        newPomodoroDiv.appendChild(trashSpan)
+        trashSpan.appendChild(trash)
+
+        if (testPomodoro === null) {
+            newPomodoro.setAttribute("id", "current-pomodoro")
+        } else {
+            console.log("toto")
+        }
+
+        trashSpan.addEventListener("click", () => {
+            trashSpan.parentNode.remove()
+            updateCurrentPomodoro()
+        })
+
+        handlePlaylist()
+
+    } else errorMessage("Enough work for today !", list)
+}
+
+function errorMessage(messageContent, parentNode) {
+
+    if (document.querySelector(".error-message")) {
+        document.querySelector(".error-message").remove()
+    }
+
+    const message = document.createElement("div")
+    message.classList.add("error-message")
+    message.innerText = messageContent
+    parentNode.appendChild(message)
+
+    setTimeout(() => message.remove(), 3000)
+    
+}
+
+function handlePlaylist() {
+
+    const pomodoros = document.querySelectorAll(".pomodoro-list-item")
+    let duration = []
+
+    for (let i = 0; i < pomodoros.length; i++)
+    {
+        duration.push(pomodoros[i].innerText)
+        console.log(duration[i])
     }
 }
 
-function errorMessage() {
+function updateCurrentPomodoro() {
 
-    const message = document.querySelector(".error-message")
-
-    if (message) {
-        message.remove()
-
-    } else {
-        const message = document.createElement("div")
-        message.classList.add("error-message")
-        message.innerText = "Length must be between 1 and 60 minutes !"
-        settingsModal.appendChild(message)
-
-        setTimeout(() => message.remove(), 3000)
-    }
+    const pomodoros = document.querySelectorAll(".pomodoro-list-item")
+    pomodoros[0].setAttribute("id", "current-pomodoro")
 }
-/*
-const listItems = document.querySelectorAll(".pomodoro-list-item")
-
-for (let i = 0; i < listItems.length; i++)
-{
-    const listItem = listItems[i]
-    const trash = document.createElement("i")
-    trash.classList.add("fas", "fa-trash")
-    listItem.appendChild(trash)
-}*/
