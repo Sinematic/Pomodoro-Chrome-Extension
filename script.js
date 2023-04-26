@@ -138,14 +138,6 @@ function addPomodoro(isCurrent=false, time=pomodoroDefaultTime) {
         trash.remove()
     })
 
-    trash.addEventListener("click", (event) => {
-        event.preventDefault()
-        console.log("toto")
-        newPomodoroDiv.remove()
-        newPomodoro.remove()
-        trash.remove()
-    })
-
     if(isCurrent) {
         newPomodoro.setAttribute("id", "current-pomodoro")
     }
